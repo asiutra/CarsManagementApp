@@ -14,6 +14,10 @@ namespace CarsManagementApp.Controllers
         [HttpGet]
         public async Task<IActionResult> ShowUser()
         {
+
+            //TODO: Move call to API to Service than use serivce to consume API
+            //http[:]//localhost:5000/ must be as a variable
+
             List<User> userList = new List<User>();
             using (var httpClient = new HttpClient())
             {

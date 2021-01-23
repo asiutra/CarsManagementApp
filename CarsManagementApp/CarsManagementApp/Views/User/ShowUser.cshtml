@@ -1,45 +1,61 @@
-﻿@model IList<User>
+﻿@model User
 @{
-    ViewData["Title"] = "ShowUser";
+    ViewData["Title"] = "ShowListUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>ShowUser</h1>
+<!DOCTYPE html>
 
-<br />
-
-<section class="mr-4 ml-4">
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowUser</title>
+</head>
+<body>
     <table class="table" border="1px">
         <thead>
             <tr class="d-flex text-color-darker">
-                <th scope="col" class="col-1">ID</th>
-                <th scope="col" class="col-5">NAME</th>
-                <th scope="col" class="col-5">SURNAME</th>
-                <th scope="col" class="col-5">AGE</th>
-                <th scope="col" class="col-5">PHONE</th>
-                <th scope="col" class="col-5">EMAIL</th>
-                <th scope="col" class="col-5">CITY</th>
-                <th scope="col" class="col-5">POST CODE</th>
-                <th scope="col" class="col-5">STREET</th>
-                <th scope="col" class="col-5">APARTMENT NUMBER</th>
+                <th scope="col" class="col-5">Name</th>
+                <th scope="col" class="col-5">Surname</th>
+                <th scope="col" class="col-5">Age</th>
+                <th scope="col" class="col-5">Phone</th>
+                <th scope="col" class="col-5">Email</th>
+                <th scope="col" class="col-5">PostCode</th>
+                <th scope="col" class="col-5">City</th>
+                <th scope="col" class="col-5">Street</th>
+                <th scope="col" class="col-5">ApartmentNumber</th>
+                <th scope="col" class="col-5">CarBrand</th>
+                <th scope="col" class="col-5">CarModel</th>
+                <th scope="col" class="col-5">CarRegistrationNumber</th>
+                <th scope="col" class="col-5">HorsePower</th>
+                <th scope="col" class="col-5">Details about service</th>
             </tr>
         </thead>
-        <tbody class="text-color-lighter">
-            @foreach (var user in Model)
-            {
+        <tbody>
             <tr class="d-flex">
-                <th scope="row" class="col-1">@user.Id</th>
-                <td class="col-5">@user.Name</td>
-                <td class="col-5">@user.Surname</td>
-                <td class="col-5">@user.Age</td>
-                <td class="col-5">@user.Phone</td>
-                <td class="col-5">@user.Email</td>
-                <td class="col-5">@user.City</td>
-                <td class="col-5">@user.PostCode</td>
-                <td class="col-5">@user.Street</td>
-                <td class="col-5">@user.ApartmentNumber</td>
+                <td class="col-5">@Model.Name</td>
+                <td class="col-5">@Model.Surname</td>
+                <td class="col-5">@Model.Age</td>
+                <td class="col-5">@Model.Phone</td>
+                <td class="col-5">@Model.Email</td>
+                <td class="col-5">@Model.PostCode</td>
+                <td class="col-5">@Model.City</td>
+                <td class="col-5">@Model.Street</td>
+                <td class="col-5">@Model.ApartmentNumber</td>
+
+                @foreach (var v in @Model.Vehicles)
+                {
+                    <td class="col-5">@v.Brand</td>
+                    <td class="col-5">@v.Model</td>
+                    <td class="col-5">@v.RegistrationNumber</td>
+                    <td class="col-5">@v.HorsePower</td>
+
+                    //Prepare view about details car service - service, repair etc.
+                    <td class="col-5"><a asp-action="" asp-controller="" asp-route-id="">DETAILS</a></td>
+                }
             </tr>
-            }
         </tbody>
     </table>
-</section>
+
+</body>
+</html>

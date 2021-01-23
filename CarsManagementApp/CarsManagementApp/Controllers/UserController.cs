@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using CarsManagementApp.Models;
+using CarsManagementApp.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -11,24 +12,55 @@ namespace CarsManagementApp.Controllers
 {
     public class UserController : Controller
     {
-        [HttpGet]
-        public async Task<IActionResult> ShowUser()
+        private readonly IUserService _userService;
+
+        public UserController(IUserService userService)
         {
+            _userService = userService;
+        }
 
-            //TODO: Move call to API to Service than use serivce to consume API
-            //http[:]//localhost:5000/ must be as a variable
 
-            List<User> userList = new List<User>();
-            using (var httpClient = new HttpClient())
+        [HttpGet]
+        public async Task<IActionResult> ShowListUser()
+        {
+            return View(await _userService.GetUserList());
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> ShowUser(int id)
+        {
+            var user = await _userService.GetUser(id);
+
+            return View(user);
+
+        }
+
+        [HttpGet]
+        public IActionResult PostUser()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> PostUser(User user)
+        {
+            // is a good practise to having more than one return keyWord??!
+
+            if (!ModelState.IsValid)
+                return View(user);
+
+            if (user == null)
             {
-                using (var response = await httpClient.GetAsync("http://localhost:5000/api/user"))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    userList = JsonConvert.DeserializeObject<List<User>>(apiResponse);
-                }
+                ModelState.AddModelError("", "Błąd dodawania użytkownika");
+                return View(user);
             }
 
-            return View(userList);
+            await _userService.PostUser(user);
+            
+            return RedirectToAction("ShowListUser", "User");
         }
+
     }
 }

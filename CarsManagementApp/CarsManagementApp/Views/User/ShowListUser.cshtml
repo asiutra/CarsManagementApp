@@ -1,0 +1,50 @@
+﻿@model IList<User>
+@{
+    ViewData["Title"] = "ShowListUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h1>ShowListUser</h1>
+
+<br />
+
+<section class="mr-4 ml-4">
+    <table class="table" border="1px">
+        <thead>
+            <tr class="d-flex text-color-darker">
+                <th scope="col" class="col-1">ID</th>
+                <th scope="col" class="col-5">NAME</th>
+                <th scope="col" class="col-5">SURNAME</th>
+                <th scope="col" class="col-5">AGE</th>
+                <th scope="col" class="col-5">PHONE</th>
+                <th scope="col" class="col-5">EMAIL</th>
+                <th scope="col" class="col-5">CITY</th>
+                <th scope="col" class="col-5">POST CODE</th>
+                <th scope="col" class="col-5">STREET</th>
+                <th scope="col" class="col-5">APARTMENT NUMBER</th>
+                <th scope="col" class="col-5">MORE DETAILS</th>
+                <th scope="col" class="col-5">EDIT</th>
+            </tr>
+        </thead>
+        <tbody class="text-color-lighter">
+            @foreach (var user in Model)
+            {
+            <tr class="d-flex">
+                <th scope="row" class="col-1">@user.Id</th>
+                <td class="col-5">@user.Name</td>
+                <td class="col-5">@user.Surname</td>
+                <td class="col-5">@user.Age</td>
+                <td class="col-5">@user.Phone</td>
+                <td class="col-5">@user.Email</td>
+                <td class="col-5">@user.City</td>
+                <td class="col-5">@user.PostCode</td>
+                <td class="col-5">@user.Street</td>
+                <td class="col-5">@user.ApartmentNumber</td>
+                <td class="col-5"><a asp-action="ShowUser" asp-controller="User" asp-route-id="@user.Id">DETAILS</a></td>
+                <td class="col-5"><a asp-action="PutUser" asp-controller="User" asp-route-id="@user.Id">EDIT</a></td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+</section>

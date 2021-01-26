@@ -11,8 +11,8 @@ namespace CarsManagementApp.Services.Interfaces
         Task <User> GetUser(int id);
         Task <IList<User>> GetUserList();
         Task <User> PostUser(User user);
-        Task <User> PutUser(/*int id,*/ User user);
-        Task<User> DeleteUser(int id);
+        Task <bool> PutUser(User user);
+        Task <bool> DeleteUser(int id);
 
     }
 }

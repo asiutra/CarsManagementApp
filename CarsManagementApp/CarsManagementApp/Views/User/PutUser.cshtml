@@ -1,0 +1,104 @@
+﻿@model User
+@{
+    ViewData["Title"] = "PutUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>PutUser</h1>
+
+<form asp-action="PutUser" asp-controller="User" method="post">
+    <div>
+        <button type="submit" class="btn btn-successs">Save</button>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Name" class="col-sm-2 label-size col-form-label">
+            Name
+        </label>
+        <div class="col-sm-10">
+            <input asp-for="Name" type="text" class="form-control" value="@Model.Name" placeholder="Name">
+            <span asp-validation-for="Name"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Surname" class="col-sm-2 label-size col-form-label">
+            Surname
+        </label>
+        <div class="col-sm-10">
+            <input asp-for="Surname" type="text" class="form-control" value="@Model.Surname" placeholder="Surname">
+            <span asp-validation-for="Surname"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Age" class="col-sm-2 label-size col-form-label">
+            Age
+        </label>
+        <div class="col-sm-10">
+            <input asp-for="Age" type="number" class="form-control" value="@Model.Age" placeholder="Age">
+            <span asp-validation-for="Age"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Phone" class="col-sm-2 label-size col-form-label">
+            Phone
+        </label>
+        <div class="col-sm-10">
+            <input asp-for="Phone" type="number" class="form-control" value="@Model.Phone" placeholder="Phone">
+            <span asp-validation-for="Phone"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Email" class="col-sm-2 label-size col-form-label">
+            Email
+        </label>
+        <div class="col-sm-10">
+            <input asp-for="Email" type="email" class="form-control" value="@Model.Email" placeholder="Email">
+            <span asp-validation-for="Email"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="City" class="col-sm-2 label-size col-form-label">
+            City
+        </label>
+        <div class="col-sm-10">
+            <input asp-for="City" type="text" class="form-control" value="@Model.City" placeholder="City">
+            <span asp-validation-for="City"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="PostCode" class="col-sm-2 label-size col-form-label">
+            PostCode
+        </label>
+        <div class="col-sm-10">
+            <input asp-for="PostCode" type="number" class="form-control" value="@Model.PostCode" placeholder="PostCode">
+            <span asp-validation-for="PostCode"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Street" class="col-sm-2 label-size col-form-label">
+            Street
+        </label>
+        <div class="col-sm-10">
+            <input asp-for="Street" type="text" class="form-control" value="@Model.Street" placeholder="Street">
+            <span asp-validation-for="Street"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="ApartmentNumber" class="col-sm-2 label-size col-form-label">
+            ApartmentNumber
+        </label>
+        <div class="col-sm-10">
+            <input asp-for="ApartmentNumber" type="number" class="form-control" value="@Model.ApartmentNumber" placeholder="ApartmentNumber">
+            <span asp-validation-for="ApartmentNumber"></span>
+        </div>
+    </div>
+
+</form>

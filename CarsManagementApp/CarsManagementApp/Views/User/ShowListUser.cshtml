@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <h1>ShowListUser</h1>
+<h1>ShowListUser</h1>
 
 <br />
 
@@ -22,28 +22,29 @@
                 <th scope="col" class="col-5">POST CODE</th>
                 <th scope="col" class="col-5">STREET</th>
                 <th scope="col" class="col-5">APARTMENT NUMBER</th>
-                <th scope="col" class="col-5">MORE DETAILS</th>
-                <th scope="col" class="col-5">EDIT</th>
+                <th scope="col" class="col-5">ACTION</th>
             </tr>
         </thead>
         <tbody class="text-color-lighter">
             @foreach (var user in Model)
             {
-            <tr class="d-flex">
-                <th scope="row" class="col-1">@user.Id</th>
-                <td class="col-5">@user.Name</td>
-                <td class="col-5">@user.Surname</td>
-                <td class="col-5">@user.Age</td>
-                <td class="col-5">@user.Phone</td>
-                <td class="col-5">@user.Email</td>
-                <td class="col-5">@user.City</td>
-                <td class="col-5">@user.PostCode</td>
-                <td class="col-5">@user.Street</td>
-                <td class="col-5">@user.ApartmentNumber</td>
-                <td class="col-5"><a asp-action="ShowUser" asp-controller="User" asp-route-id="@user.Id">DETAILS</a></td>
-                <td class="col-5"><a asp-action="PutUser" asp-controller="User" asp-route-id="@user.Id">EDIT</a></td>
-
-            </tr>
+                <tr class="d-flex">
+                    <th scope="row" class="col-1">@user.Id</th>
+                    <td class="col-5">@user.Name</td>
+                    <td class="col-5">@user.Surname</td>
+                    <td class="col-5">@user.Age</td>
+                    <td class="col-5">@user.Phone</td>
+                    <td class="col-5">@user.Email</td>
+                    <td class="col-5">@user.City</td>
+                    <td class="col-5">@user.PostCode</td>
+                    <td class="col-5">@user.Street</td>
+                    <td class="col-5">@user.ApartmentNumber</td>
+                    <td class="col-5">
+                        <a asp-action="ShowUser" asp-controller="User" asp-route-id="@user.Id">DETAILS</a>
+                        <a asp-action="PutUser" asp-controller="User" asp-route-id="@user.Id">EDIT</a>
+                        <a asp-action="DeleteUser" asp-controller="User" asp-route-id="@user.Id">DELETE</a>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

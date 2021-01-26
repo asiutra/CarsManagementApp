@@ -69,15 +69,27 @@ namespace CarsManagementApp.Services
         }
 
 
-        public async Task<User> PutUser(/*int id,*/ User user)
+        public async Task<bool> PutUser(User user)
         {
-            throw new NotImplementedException();
+            var httpClient = new HttpClient();
+            var request = new HttpRequestMessage(HttpMethod.Put, $"{_host}/{_address}/{user.Id}")
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json")
+            };
+
+            var response = await httpClient.SendAsync(request);
+
+            return response.IsSuccessStatusCode;
         }
 
 
-        public Task<User> DeleteUser(int id)
+        public async Task<bool> DeleteUser(int id)
         {
-            throw new NotImplementedException();
+            var httpClient = new HttpClient();
+            var request = new HttpRequestMessage(HttpMethod.Delete, $"{_host}/{_address}/{id}");
+            var response = await httpClient.SendAsync(request);
+
+            return response.IsSuccessStatusCode;
         }
     }
 }

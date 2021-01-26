@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using CarsManagementApp.Models;
 using CarsManagementApp.Services.Interfaces;
@@ -46,8 +47,6 @@ namespace CarsManagementApp.Controllers
         [HttpPost]
         public async Task<IActionResult> PostUser(User user)
         {
-            // is a good practise to having more than one return keyWord??!
-
             if (!ModelState.IsValid)
                 return View(user);
 
@@ -58,9 +57,41 @@ namespace CarsManagementApp.Controllers
             }
 
             await _userService.PostUser(user);
+
+            return RedirectToAction("ShowListUser", "User");
+        }
+
+
+        [HttpGet]
+        public IActionResult PutUser(int id)
+        {
+            var user = _userService.GetUser(id).Result;
+
+            return View(user);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> PutUser(User user)
+        {
+           var response = await _userService.PutUser(user);
+
+            if (response != true)
+                return BadRequest();
             
             return RedirectToAction("ShowListUser", "User");
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var response = await _userService.DeleteUser(id);
+
+            if (response != true)
+                return BadRequest();
+
+            return RedirectToAction("ShowListUser", "User");
+        }
     }
 }
